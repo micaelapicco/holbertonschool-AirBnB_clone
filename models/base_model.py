@@ -8,21 +8,24 @@ from datetime import datetime
 
 
 class BaseModel():
-    """Define all attributes"""
+    """
+    Defines a BaseModel
+    """
 
     def __init__(self):
-        """constructor Method"""
+        """Constructor method"""
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.update_at = datetime.now()
+        self.created_at = datetime.utcnow()
+        self.update_at = datetime.utcnow()
 
     def __str__(self):
         """Prints clase, id and dict"""
-        return (f"[{type(self).__name__}] ({self.id}) {self.__dict__}")
+        name = type(self).__name
+        return "[{}] ({}) {}".format(name, self.id, self.__dict__)
 
     def save(self):
         """Updates date"""
-        self.update_at = datetime.now()
+        self.update_at = datetime.utcnow()
 
     def to_dict(self):
         """Returns object dictionary representation"""
@@ -31,3 +34,4 @@ class BaseModel():
         dict_cpy["created_at"] = self.created_at.isoformat()
         dict_cpy["update_at"] = self.update_at.isoformat()
         return (dict_cpy)
+
