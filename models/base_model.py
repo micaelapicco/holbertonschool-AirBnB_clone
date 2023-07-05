@@ -1,14 +1,20 @@
 #!/usr/bin/python3
 """
-Base model Module
+This modules contains the class BaseModel
 """
-import models
+
 import uuid
 from datetime import datetime
 
 
 class BaseModel():
-    """Define all attributes"""
+    """
+    Defines a BaseModel
+    Attributes:
+        id: str() of a random-generated id
+        created_at: Datetime when an instance was created
+        updated_at: Datetime when an instance was updated
+    """
 
     def __init__(self):
         """Constructor method"""
@@ -18,9 +24,7 @@ class BaseModel():
 
     def __str__(self):
         """Prints clase, id and dict"""
-        return '[{0}] ({1}) {2}'.format(
-            self.__class__.__name__, self.id, self.__dict__
-        )
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Updates date"""
