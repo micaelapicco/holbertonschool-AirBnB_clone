@@ -24,7 +24,7 @@ class BaseModel():
 
     def __str__(self):
         """Prints clase, id and dict"""
-        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Updates date"""
@@ -35,10 +35,10 @@ class BaseModel():
         dict_cpy = {}
 
         for key, value in self.__dict__.items():
-            if key == "created_at" or key == "update_at":
-                dict_cpy[key] = value.isoformat()
+            if key == "created_at" or key == "updated_at":
+                dict_cpy[key] = datetime.isoformat(value)
             else:
                 dict_cpy[key] = value
-        dict_cpy["__class__"] = type(self).__name__
+        dict_cpy["__class__"] = self.__class__.__name__
 
         return (dict_cpy)
