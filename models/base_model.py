@@ -2,7 +2,7 @@
 """
 Base model Module
 """
-
+import models
 import uuid
 from datetime import datetime
 
@@ -18,7 +18,9 @@ class BaseModel():
 
     def __str__(self):
         """Prints clase, id and dict"""
-        return (f"[{type(self).__name__}] ({self.id}) {self.__dict__}")
+        return '[{0}] ({1}) {2}'.format(
+            self.__class__.__name__, self.id, self.__dict__
+        )
 
     def save(self):
         """Updates date"""
