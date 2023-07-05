@@ -14,7 +14,7 @@ class BaseModel():
         """Constructor method"""
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
-        self.update_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """Prints clase, id and dict"""
@@ -22,7 +22,7 @@ class BaseModel():
 
     def save(self):
         """Updates date"""
-        self.update_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """Returns object dictionary representation"""
