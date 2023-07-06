@@ -27,7 +27,7 @@ class FileStorage:
             json.dump(dic, self.__objects)
 
     def reload(self):
-        """Deserializes the json file to __objects"""
+        """Deserializes the json file to __objeccts"""
 
 
 
