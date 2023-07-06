@@ -4,10 +4,6 @@
 from models.base_model import BaseModel
 import cmd
 import sys
-<<<<<<< HEAD
-
-=======
->>>>>>> 4842dde6d295b7b4ef8727449698f76c3420e48d
 
 class HBNBCommand(cmd.Cmd):
     """The entry point of the command interpreter"""
@@ -15,15 +11,6 @@ class HBNBCommand(cmd.Cmd):
     acptd = ("BaseModel", )
     prompt = "(hbnb) "
 
-<<<<<<< HEAD
-    def do_create(self, input_cls):
-        """Creates a new class"""
-        if not input_cls:
-            print(**class doesn´t missing**)
-
-        split()
-        eval(input_cls)()
-=======
     def do_create(self, inptcls):
         """Creates a new class isntance"""
         if not inptcls:
@@ -37,7 +24,6 @@ class HBNBCommand(cmd.Cmd):
             nince = eval(inptcls)()
             print(nince.id)
             nince.save()
->>>>>>> 4842dde6d295b7b4ef8727449698f76c3420e48d
 
     def emptyline(self):
         """Takes action when an passed empty line as input"""
