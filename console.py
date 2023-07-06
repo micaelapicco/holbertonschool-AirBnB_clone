@@ -2,6 +2,7 @@
 """This module contains the class HBNBCommand"""
 
 from models.base_model import BaseModel
+import models
 import cmd
 import sys
 
@@ -24,6 +25,23 @@ class HBNBCommand(cmd.Cmd):
             nince = eval(inptcls)()
             print(nince.id)
             nince.save()
+
+    def do_show(self, lsargs):
+        """Prints the representation of an instance"""
+        lsargs = lsargs.split()
+        print(lsargs)
+        if len(lsargs) == 0:
+            print("** class name missing **")
+        if lsargs[0] not in HBNBCommand.acptd:
+            print("** class doesn't exist **")
+        if len(lsargs) == 1:
+            print("** instance id missing **")
+        else:
+            sehobj = f"{lsargs[0]}.{lsargs[1]}"
+            if sehobj in models.storage.all():
+                print(models.storage.all()[sehobj])
+            else:
+                print("** no instance found **")
 
     def emptyline(self):
         """Takes action when an passed empty line as input"""
