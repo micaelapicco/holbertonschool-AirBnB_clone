@@ -24,25 +24,72 @@ your_terminal@~$ ./console.py
 #### Supported Types of Object:
 - `BaseModel`:
 It is the base of all subclases, contains atributtes and methods that will be used by them;
-`State`, `City`, `Amenity`, `Place`, `Review"`
+`State`, `City`, `Amenity`, `Place`, `Review`
 
 #### Supported Commands:
 * --> `create`:
-Creates a new object of the allowed types (its type must be specified).
+Creates a new object of the allowed types (its type must be specified). <br />
 **Example:**
 ```
 (hbnb) create User
-c82182df-6f57-4c7f-a5fb-6625337cefd7
+59966872-4a99-49ba-92ac-8393538c749a
 ```
 
 * --> `show`: 
-Shows the selected object (type and id of it must be given).
-**Example**
+Shows the selected object, (type and id of it must be given). <br />
+**Example:**
 ```
-(hbnb) show User c82182df-6f57-4c7f-a5fb-6625337cefd7
-[User] (c82182df-6f57-4c7f-a5fb-6625337cefd7) {'id': 'c82182df-6f57-4c7f-a5fb-6625337cefd7', 'created_at': datetime.datetime(2023, 7, 7, 11, 24, 6, 730425), 'updated_at': datetime.datetime(2023, 7, 7, 11, 24, 6, 730463)}
+(hbnb) show User 59966872-4a99-49ba-92ac-8393538c749a
+["[User] (59966872-4a99-49ba-92ac-8393538c749a) {'id': '59966872-4a99-49ba-92ac-8393538c749a', 'created_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444506), 'updated_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444611)}"]
 ```
- 
+
+* --> `all`:
+Shows all the existing objects of a class, (if not argument given will show all the existing objects). <br />
+**Example (no arguments):**
+```
+(hbnb) create City
+7653c610-2cc4-4cd2-adf7-92bf04e12b0b
+(hbnb) all
+["[City] (7653c610-2cc4-4cd2-adf7-92bf04e12b0b) {'id': '7653c610-2cc4-4cd2-adf7-92bf04e12b0b', 'created_at': datetime.datetime(2023, 7, 7, 14, 16, 57, 604763), 'updated_at': datetime.datetime(2023, 7, 7, 14, 16, 57, 604816)}", "[User] (59966872-4a99-49ba-92ac-8393538c749a) {'id': '59966872-4a99-49ba-92ac-8393538c749a', 'created_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444506), 'updated_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444611)}"]
+```
+**Example:**
+```
+(hbnb) all User
+["[User] (59966872-4a99-49ba-92ac-8393538c749a) {'id': '59966872-4a99-49ba-92ac-8393538c749a', 'created_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444506), 'updated_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444611)}"]
+```
+
+* --> `update`:
+Updates an object adding or updating the given attribute. (type, id, attribute, value required). <br />
+**Example:**
+```
+(hbnb) create User
+4db9b0b5-9dad-4e1e-a89c-8e752f60e52d
+(hbnb) update User 4db9b0b5-9dad-4e1e-a89c-8e752f60e52d gonna "die:)"
+(hbnb) show  User 4db9b0b5-9dad-4e1e-a89c-8e752f60e52d
+["[User] (4db9b0b5-9dad-4e1e-a89c-8e752f60e52d) {'id': '4db9b0b5-9dad-4e1e-a89c-8e752f60e52d', 'created_at': datetime.datetime(2023, 7, 7, 14, 32, 14, 398566), 'updated_at': datetime.datetime(2023, 7, 7, 14, 32, 14, 399215), 'gonna': 'die:)'}"]
+```
+
+* --> `destroy`:
+Destroys (removes) an object, (type and id required) <br />
+**Example:**
+```
+(hbnb) destroy User 59966872-4a99-49ba-92ac-8393538c749a
+(hbnb destroy User 4db9b0b5-9dad-4e1e-a89c-8e752f60e52d
+(hbnb) all
+["[City] (7653c610-2cc4-4cd2-adf7-92bf04e12b0b) {'id': '7653c610-2cc4-4cd2-adf7-92bf04e12b0b', 'created_at': datetime.datetime(2023, 7, 7, 14, 16, 57, 604763), 'updated_at': datetime.datetime(2023, 7, 7, 14, 16, 57, 604816)}"]
+```
+
+* --> `quit` and `EOF`:
+Exits the program <br />
+**Example:**
+```
+your_terminal@~$ ./console.py
+(hbnb) quit
+your_terminal@~$ ./console.py
+(hbnb) EOF
+your_terminal@~$
+```
+
 # Authors
 -  [Emanel Trias](https://github.com/KrasniKot)
 -  [Micaela Picco](https://github.com/micaelapicco)
