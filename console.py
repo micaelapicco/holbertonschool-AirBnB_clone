@@ -47,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
         lsargs = lsargs.split(" ")
         if len(lsargs) == 0:
             print("** class name missing **")
-        if lsargs[0] not in HBNBCommand.acptd:
+        elif lsargs[0] not in HBNBCommand.acptd:
             print("** class doesn't exist **")
         if len(lsargs) == 1:
             print("** instance id missing **")
@@ -91,8 +91,9 @@ class HBNBCommand(cmd.Cmd):
         if len(lsargs) == 3:
             print("** value missing **")
         else:
-            setattr(models.storage.all()[sehobj], lsargs[2], lsargs[3])
-            models.storage.save()
+            if sehobj in models.storage.all():
+                setattr(models.storage.all()[sehobj], lsargs[2], lsargs[3])
+                models.storage.save()
 
 
     def emptyline(self):
