@@ -2,6 +2,7 @@
 """Contains the class FileStorage"""
 
 from models.base_model import BaseModel
+from models.user import User
 from os import path
 import json
 
