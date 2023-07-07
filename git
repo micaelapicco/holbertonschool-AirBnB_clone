@@ -1,6 +1,7 @@
 #!/bin/bash
 find . -name __pycache__ -exec rm -r {} \;
 find . -name .*.swp -exec rm -r {} \;
+rm file.json
 
 git add .
 read var
