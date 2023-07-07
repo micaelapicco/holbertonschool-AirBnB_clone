@@ -23,8 +23,9 @@ your_terminal@~$ ./console.py
 It can be used in non-interactive mode though.
 ```
 your_terminal@~$ echo "create City" | ./console.py 
-(hbnb) c32ff5fb-858c-457a-9716-7c0d47e4c71b
+c32ff5fb-858c-457a-9716-7c0d47e4c71b
 (hbnb)
+your_terminal@~$
 ```
 
 ### Testing:
@@ -35,7 +36,7 @@ python3 -m unittest discover tests
 
 #### Supported Types of Object:
 - `BaseModel`:
-It is the base of all subclases, contains atributtes and methods that will be used by them;
+It is the base of all subclases, contains atributtes and methods that will be used by them; <br />
 `State`, `City`, `Amenity`, `Place`, `Review`
 
 #### Supported Commands:
