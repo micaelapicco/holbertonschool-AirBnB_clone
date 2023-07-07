@@ -18,7 +18,19 @@
 After cloning the repository, the file *console.py* have to have execution permission;
 ```
 your_terminal@~$ ./console.py
-(hbnb) _
+(hbnb)
+```
+It can be used in non-interactive mode though.
+```
+your_terminal@~$ echo "create City" | ./console.py 
+(hbnb) c32ff5fb-858c-457a-9716-7c0d47e4c71b
+(hbnb)
+```
+
+### Testing:
+All unittests can be executed with:
+```
+python3 -m unittest discover tests
 ```
 
 #### Supported Types of Object:
@@ -27,7 +39,7 @@ It is the base of all subclases, contains atributtes and methods that will be us
 `State`, `City`, `Amenity`, `Place`, `Review`
 
 #### Supported Commands:
-* --> `create`:
+* --> `create`: <br />
 Creates a new object of the allowed types (its type must be specified). <br />
 **Example:**
 ```
@@ -35,7 +47,7 @@ Creates a new object of the allowed types (its type must be specified). <br />
 59966872-4a99-49ba-92ac-8393538c749a
 ```
 
-* --> `show`: 
+* --> `show`: <br />
 Shows the selected object, (type and id of it must be given). <br />
 **Example:**
 ```
@@ -43,7 +55,7 @@ Shows the selected object, (type and id of it must be given). <br />
 ["[User] (59966872-4a99-49ba-92ac-8393538c749a) {'id': '59966872-4a99-49ba-92ac-8393538c749a', 'created_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444506), 'updated_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444611)}"]
 ```
 
-* --> `all`:
+* --> `all`: <br />
 Shows all the existing objects of a class, (if not argument given will show all the existing objects). <br />
 **Example (no arguments):**
 ```
@@ -58,7 +70,7 @@ Shows all the existing objects of a class, (if not argument given will show all 
 ["[User] (59966872-4a99-49ba-92ac-8393538c749a) {'id': '59966872-4a99-49ba-92ac-8393538c749a', 'created_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444506), 'updated_at': datetime.datetime(2023, 7, 7, 14, 17, 5, 444611)}"]
 ```
 
-* --> `update`:
+* --> `update`: <br />
 Updates an object adding or updating the given attribute. (type, id, attribute, value required). <br />
 **Example:**
 ```
@@ -69,7 +81,7 @@ Updates an object adding or updating the given attribute. (type, id, attribute, 
 ["[User] (4db9b0b5-9dad-4e1e-a89c-8e752f60e52d) {'id': '4db9b0b5-9dad-4e1e-a89c-8e752f60e52d', 'created_at': datetime.datetime(2023, 7, 7, 14, 32, 14, 398566), 'updated_at': datetime.datetime(2023, 7, 7, 14, 32, 14, 399215), 'gonna': 'die:)'}"]
 ```
 
-* --> `destroy`:
+* --> `destroy`: <br />
 Destroys (removes) an object, (type and id required) <br />
 **Example:**
 ```
@@ -79,7 +91,7 @@ Destroys (removes) an object, (type and id required) <br />
 ["[City] (7653c610-2cc4-4cd2-adf7-92bf04e12b0b) {'id': '7653c610-2cc4-4cd2-adf7-92bf04e12b0b', 'created_at': datetime.datetime(2023, 7, 7, 14, 16, 57, 604763), 'updated_at': datetime.datetime(2023, 7, 7, 14, 16, 57, 604816)}"]
 ```
 
-* --> `quit` and `EOF`:
+* --> `quit` and `EOF`: <br />
 Exits the program <br />
 **Example:**
 ```
