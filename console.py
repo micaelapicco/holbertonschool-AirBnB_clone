@@ -6,6 +6,7 @@ import models
 import cmd
 import shlex
 
+
 class HBNBCommand(cmd.Cmd):
     """The entry point of the command interpreter"""
 
@@ -95,9 +96,8 @@ class HBNBCommand(cmd.Cmd):
                 setattr(models.storage.all()[sehobj], lsargs[2], lsargs[3])
                 models.storage.save()
 
-
     def emptyline(self):
-        """Does nothing when a empty line is passed"""
+        """Does nothing when a empty line is ipassed"""
         pass
 
     def do_quit(self, input):
