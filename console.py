@@ -15,26 +15,24 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, inptcls):
         """Creates a new class isntance"""
+        inptcls = inptcls.split(" ")[0]
         if not inptcls:
             print("** class name missing **")
-
-        if " " in inptcls:
-            inptcls = inptcls.split(" ")[0]
-        if inptcls not in HBNBCommand.acptd:
+        elif inptcls not in HBNBCommand.acptd:
             print("** class doesn't exist **")
         else:
             nince = eval(inptcls)()
             print(nince.id)
             nince.save()
 
-    def do_show(self, lsargs):
+    def do_show(self, args):
         """Prints the representation of an instance"""
-        lsargs = lsargs.split()
-        if len(lsargs) == 0:
+        lsargs = args.split(" ")
+        if not args:
             print("** class name missing **")
-        if lsargs[0] not in HBNBCommand.acptd:
+        elif lsargs[0] not in HBNBCommand.acptd:
             print("** class doesn't exist **")
-        if len(lsargs) == 1:
+        elif len(lsargs) == 1:
             print("** instance id missing **")
         else:
             sehobj = f"{lsargs[0]}.{lsargs[1]}"
@@ -43,14 +41,14 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
-    def do_destroy(self, lsargs):
+    def do_destroy(self, args):
         """Deletes an instance"""
-        lsargs = lsargs.split(" ")
-        if len(lsargs) == 0:
+        lsargs = args.split(" ")
+        if not args:
             print("** class name missing **")
         elif lsargs[0] not in HBNBCommand.acptd:
             print("** class doesn't exist **")
-        if len(lsargs) == 1:
+        elif len(lsargs) == 1:
             print("** instance id missing **")
         else:
             sehobj = f"{lsargs[0]}.{lsargs[1]}"
@@ -82,19 +80,20 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif lsargs[0] not in HBNBCommand.acptd:
             print("** class doesn't exist **")
-        if len(lsargs) == 1:
+        elif len(lsargs) == 1:
             print("** instance id missing **")
-        sehobj = f"{lsargs[0]}.{lsargs[1]}"
-        if sehobj not in models.storage.all():
-            print("** no instance found **")
-        if len(lsargs) == 2:
-            print("** attribute name missing **")
-        if len(lsargs) == 3:
-            print("** value missing **")
         else:
-            if sehobj in models.storage.all():
-                setattr(models.storage.all()[sehobj], lsargs[2], lsargs[3])
-                models.storage.save()
+            sehobj = f"{lsargs[0]}.{lsargs[1]}"
+            if sehobj not in models.storage.all():
+                print("** no instance found **")
+            elif len(lsargs) == 2:
+                print("** attribute name missing **")
+            elif len(lsargs) == 3:
+                print("** value missing **")
+            else:
+                if sehobj in models.storage.all():
+                    setattr(models.storage.all()[sehobj], lsargs[2], lsargs[3])
+                    models.storage.save()
 
     def emptyline(self):
         """Does nothing when a empty line is ipassed"""
