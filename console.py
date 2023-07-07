@@ -1,14 +1,7 @@
 #!/usr/bin/python3
 """This module contains the class HBNBCommand"""
 
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
-import models
+from models import storage
 import cmd
 import shlex
 
@@ -16,104 +9,105 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """The entry point of the command interpreter"""
 
-    acptd = (
-            "BaseModel",
-            "User", "State", "City", "Amenity", "Place", "Review")
+    classes = (
+        "BaseModel",
+        "User", "State", "City", "Amenity", "Place", "Review")
     prompt = "(hbnb) "
 
-    def do_create(self, inptcls):
+    def do_create(self, args):
         """Creates a new class instance"""
-        inptcls = inptcls.split(" ")[0]  # input class
-        if not inptcls:
+        args = args.split(" ")[0]  # input class
+        if not args:
             print("** class name missing **")
-        elif inptcls not in HBNBCommand.acptd:
+        elif args not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
-            nince = eval(inptcls)()  # new instance
-            print(nince.id)
-            nince.save()
+            new_instance = eval(args)()  # new instance
+            print(new_instance.id)
+            new_instance.save()
 
     def do_show(self, args):
         """Prints the representation of an instance"""
-        lsargs = args.split(" ")  # list of arguments
+        list_args = args.split(" ")  # list of arguments
         if not args:
             print("** class name missing **")
-        elif lsargs[0] not in HBNBCommand.acptd:
+        elif list_args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        elif len(lsargs) == 1:
+        elif len(list_args) == 1:
             print("** instance id missing **")
         else:
-            sehobj = f"{lsargs[0]}.{lsargs[1]}"  # shearching object
-            if sehobj in models.storage.all():
-                print(models.storage.all()[sehobj])
+            # BaseModel -> args[0] + '.' + 'uuid4' -> args[1]
+            key_name = f"{list_args[0]}.{list_args[1]}"  # searching object
+            if key_name in storage.all():
+                print(storage.all()[key_name])
             else:
                 print("** no instance found **")
 
     def do_destroy(self, args):
         """Deletes an instance"""
-        lsargs = args.split(" ")
+        list_args = args.split(" ")
         if not args:
             print("** class name missing **")
-        elif lsargs[0] not in HBNBCommand.acptd:
+        elif list_args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        elif len(lsargs) == 1:
+        elif len(list_args) == 1:
             print("** instance id missing **")
         else:
-            sehobj = f"{lsargs[0]}.{lsargs[1]}"
-            if sehobj in models.storage.all():
-                del models.storage.all()[sehobj]
-                models.storage.save()
+            key_name = f"{list_args[0]}.{list_args[1]}"
+            if key_name in storage.all():
+                del storage.all()[key_name]
+                storage.save()
             else:
                 print("** no instance found **")
 
     def do_all(self, arg):
         """Prints the representation of all instances"""
-        elms = models.storage.all()  # elements of storage.all()
-        ellist = []  # list of elements
+        storage_objs = storage.all()  # elements of storage.all()
+        list_of_elements = []  # list of elements
         if not arg:
-            ellist = [str(elms[el])for el in elms]
-            print(ellist)
-        elif arg not in HBNBCommand.acptd:
+            list_of_elements = [str(storage_objs[el])for el in storage_objs]
+            print(list_of_elements)
+        elif arg not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
-            for key, value in elms.items():
+            for key, value in storage_objs.items():
                 if arg == key.split(".")[0]:
-                    ellist.append(str(value))
-            print(ellist)
+                    list_of_elements.append(str(value))
+            print(list_of_elements)
 
-    def do_update(self, lsargs):
+    def do_update(self, args):
         """Updates an instance adding or setting an attribute"""
-        lsargs = shlex.split(lsargs)
-        if len(lsargs) == 0:
+        args = shlex.split(args)
+        if len(args) == 0:
             print("** class name missing **")
-        elif lsargs[0] not in HBNBCommand.acptd:
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        elif len(lsargs) == 1:
+        elif len(args) == 1:
             print("** instance id missing **")
         else:
-            sehobj = f"{lsargs[0]}.{lsargs[1]}"
-            if sehobj not in models.storage.all():
+            key_name = f"{args[0]}.{args[1]}"
+            if key_name not in storage.all():
                 print("** no instance found **")
-            elif len(lsargs) == 2:
+            elif len(args) == 2:
                 print("** attribute name missing **")
-            elif len(lsargs) == 3:
+            elif len(args) == 3:
                 print("** value missing **")
             else:
-                if sehobj in models.storage.all():
+                if key_name in storage.all():
                     setattr(
-                            models.storage.all()[sehobj],
-                            lsargs[2], lsargs[3])
-                    models.storage.save()
+                        storage.all()[key_name],
+                        args[2], args[3])
+                    storage.save()
 
     def emptyline(self):
         """Does nothing when a empty line is passed"""
         pass
 
-    def do_quit(self, input):
+    def do_quit(self, args):
         """Exits the programm"""
         return True
 
-    def do_EOF(self, input):
+    def do_EOF(self, args):
         """Exits the programm"""
         print()
         return True

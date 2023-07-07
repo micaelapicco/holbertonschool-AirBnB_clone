@@ -1,13 +1,6 @@
 #!/usr/bin/python3
 """Contains the class FileStorage"""
 
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
 from os import path
 import json
 
@@ -15,10 +8,10 @@ import json
 class FileStorage:
     """Handles json serialization and deserialization"""
 
-    __file_path = "Objects.json"
+    __file_path = "file.json"
     __objects = {}
 
-    def all(self):
+    def all(self) -> dict:
         """Returns __objects"""
         return self.__objects
 
