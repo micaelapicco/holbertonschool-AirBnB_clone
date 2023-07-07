@@ -29,7 +29,6 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, lsargs):
         """Prints the representation of an instance"""
         lsargs = lsargs.split()
-        print(lsargs)
         if len(lsargs) == 0:
             print("** class name missing **")
         if lsargs[0] not in HBNBCommand.acptd:
@@ -43,8 +42,44 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    def do_destroy(self, lsargs):
+        """Deletes an instance"""
+        lsargs = lsargs.split(" ")
+        if len(lsargs) == 0:
+            print("** class name missing **")
+        if lsargs[0] in HBNBCommand.acptd:
+            print("** class doesn't exist **")
+        if len(lsargs) == 1:
+            print("** instance id missing **")
+        else:
+            sehobj = f"{lsargs[0]}.{lsargs[1]}"
+            if sehobj in models.storage.all():
+                del models.strage.all()[sehobj]
+                models.storage.save()
+            else:
+                print("** no instance found **")
+
+    def do_all(self, arg):
+        """Prints the representation of all instances"""
+        elms = models.storage.all()
+        ellist = []
+        if not arg:
+            ellist = [str(elms[el])for el in elms]
+            print(ellist)
+        elif arg not in HBNBCommand.acptd:
+            print("** class doesn't exist **")
+        else:
+            for key, value in elms.items():
+                if arg == key.split(".")[0]:
+                    ellist.append(str(value))
+            print(ellist)
+
+    def update(self, lsargs):
+        """Updates an instance adding or setting an attribute"""
+        pass
+
     def emptyline(self):
-        """Takes action when an passed empty line as input"""
+        """Does nothing when a empty line is passed"""
         pass
 
     def do_quit(self, input):
