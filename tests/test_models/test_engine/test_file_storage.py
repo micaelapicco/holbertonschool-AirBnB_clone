@@ -14,7 +14,7 @@ class Test_file_storage(unittest.TestCase):
     def test_file_path(self):
         """Checks if __file_path is private attribute"""
         test = FileStorage()
-        self.assertEqual(test._FileStorage__file_path, 'Objects.json')
+        self.assertEqual(test._FileStorage__file_path, 'file.json')
 
     def test_objects(self):
         """Cheks if objects is a dic and is a private attribute"""
