@@ -10,7 +10,7 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """The entry point of the command interpreter"""
 
-    acptd = ("BaseModel", )
+    acptd = ("BaseModel", "User")
     prompt = "(hbnb) "
 
     def do_create(self, inptcls):
