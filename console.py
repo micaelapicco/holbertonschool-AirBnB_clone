@@ -16,11 +16,11 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """The entry point of the command interpreter"""
 
-    acptd = ("BaseModel", "User")
+    acptd = ("BaseModel", "User", "State", "City", "Amenity", "Place", "Reviw")
     prompt = "(hbnb) "
 
     def do_create(self, inptcls):
-        """Creates a new class isntance"""
+        """Creates a new class instance"""
         inptcls = inptcls.split(" ")[0]
         if not inptcls:
             print("** class name missing **")
@@ -102,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
                     models.storage.save()
 
     def emptyline(self):
-        """Does nothing when a empty line is ipassed"""
+        """Does nothing when a empty line is passed"""
         pass
 
     def do_quit(self, input):
