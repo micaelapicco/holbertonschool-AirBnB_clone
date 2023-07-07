@@ -4,7 +4,7 @@
 from models.base_model import BaseModel
 import models
 import cmd
-import sys
+import shlex
 
 class HBNBCommand(cmd.Cmd):
     """The entry point of the command interpreter"""
@@ -47,14 +47,14 @@ class HBNBCommand(cmd.Cmd):
         lsargs = lsargs.split(" ")
         if len(lsargs) == 0:
             print("** class name missing **")
-        if lsargs[0] in HBNBCommand.acptd:
+        if lsargs[0] not in HBNBCommand.acptd:
             print("** class doesn't exist **")
         if len(lsargs) == 1:
             print("** instance id missing **")
         else:
             sehobj = f"{lsargs[0]}.{lsargs[1]}"
             if sehobj in models.storage.all():
-                del models.strage.all()[sehobj]
+                del models.storage.all()[sehobj]
                 models.storage.save()
             else:
                 print("** no instance found **")
@@ -74,9 +74,26 @@ class HBNBCommand(cmd.Cmd):
                     ellist.append(str(value))
             print(ellist)
 
-    def update(self, lsargs):
+    def do_update(self, lsargs):
         """Updates an instance adding or setting an attribute"""
-        pass
+        lsargs = shlex.split(lsargs)
+        if len(lsargs) == 0:
+            print("** class name missing **")
+        elif lsargs[0] not in HBNBCommand.acptd:
+            print("** class doesn't exist **")
+        if len(lsargs) == 1:
+            print("** instance id missing **")
+        sehobj = f"{lsargs[0]}.{lsargs[1]}"
+        if sehobj not in models.storage.all():
+            print("** no instance found **")
+        if len(lsargs) == 2:
+            print("** attribute name missing **")
+        if len(lsargs) == 3:
+            print("** value missing **")
+        else:
+            setattr(models.storage.all()[sehobj], lsargs[2], lsargs[3])
+            models.storage.save()
+
 
     def emptyline(self):
         """Does nothing when a empty line is passed"""
