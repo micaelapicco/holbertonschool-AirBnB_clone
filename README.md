@@ -9,10 +9,10 @@
 
 ## What’s a Command Interpreter?
 - The user can interact with the operating system through a special process, in our case, we want to be able to manage the objects of our project and test them;
-  * Create new object (ex: a new User or a new Place)
+  * Create new object (ex: a new User or a new Place).
   * Retrieve an object from a file...
-  * Update attributes of an object
-  * Destroy an object
+  * Update attributes of an object.
+  * Destroy an object.
 
 ### Executing the Console:
 After cloning the repository, the file *console.py* have to have execution permission;
@@ -25,6 +25,7 @@ It can be used in non-interactive mode though.
 your_terminal@~$ echo "create City" | ./console.py 
 (hbnb) c32ff5fb-858c-457a-9716-7c0d47e4c71b
 (hbnb)
+your_terminal@~$
 ```
 
 ### Testing:
@@ -35,8 +36,8 @@ python3 -m unittest discover tests
 
 #### Supported Types of Object:
 - `BaseModel`:
-It is the base of all subclases, contains atributtes and methods that will be used by them;
-`State`, `City`, `Amenity`, `Place`, `Review`
+It is the base of all subclases, contains atributtes and methods that will be used by them; <br />
+`State`, `City`, `Amenity`, `Place`, `Review`.
 
 #### Supported Commands:
 * --> `create`: <br />
@@ -82,7 +83,7 @@ Updates an object adding or updating the given attribute. (type, id, attribute, 
 ```
 
 * --> `destroy`: <br />
-Destroys (removes) an object, (type and id required) <br />
+Destroys (removes) an object, (type and id required). <br />
 **Example:**
 ```
 (hbnb) destroy User 59966872-4a99-49ba-92ac-8393538c749a
@@ -92,7 +93,7 @@ Destroys (removes) an object, (type and id required) <br />
 ```
 
 * --> `quit` and `EOF`: <br />
-Exits the program <br />
+Exits the program. <br />
 **Example:**
 ```
 your_terminal@~$ ./console.py
