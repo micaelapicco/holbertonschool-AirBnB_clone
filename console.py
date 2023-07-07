@@ -16,24 +16,26 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """The entry point of the command interpreter"""
 
-    acptd = ("BaseModel", "User", "State", "City", "Amenity", "Place", "Reviw")
+    acptd = (
+            "BaseModel",
+            "User", "State", "City", "Amenity", "Place", "Review")
     prompt = "(hbnb) "
 
     def do_create(self, inptcls):
         """Creates a new class instance"""
-        inptcls = inptcls.split(" ")[0]
+        inptcls = inptcls.split(" ")[0]  # input class
         if not inptcls:
             print("** class name missing **")
         elif inptcls not in HBNBCommand.acptd:
             print("** class doesn't exist **")
         else:
-            nince = eval(inptcls)()
+            nince = eval(inptcls)()  # new instance
             print(nince.id)
             nince.save()
 
     def do_show(self, args):
         """Prints the representation of an instance"""
-        lsargs = args.split(" ")
+        lsargs = args.split(" ")  # list of arguments
         if not args:
             print("** class name missing **")
         elif lsargs[0] not in HBNBCommand.acptd:
@@ -41,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(lsargs) == 1:
             print("** instance id missing **")
         else:
-            sehobj = f"{lsargs[0]}.{lsargs[1]}"
+            sehobj = f"{lsargs[0]}.{lsargs[1]}"  # shearching object
             if sehobj in models.storage.all():
                 print(models.storage.all()[sehobj])
             else:
@@ -66,8 +68,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints the representation of all instances"""
-        elms = models.storage.all()
-        ellist = []
+        elms = models.storage.all()  # elements of storage.all()
+        ellist = []  # list of elements
         if not arg:
             ellist = [str(elms[el])for el in elms]
             print(ellist)
@@ -98,7 +100,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             else:
                 if sehobj in models.storage.all():
-                    setattr(models.storage.all()[sehobj], lsargs[2], lsargs[3])
+                    setattr(
+                            models.storage.all()[sehobj],
+                            lsargs[2], lsargs[3])
                     models.storage.save()
 
     def emptyline(self):
