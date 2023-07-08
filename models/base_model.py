@@ -38,8 +38,7 @@ class BaseModel():
 
     def __str__(self):
         """Prints clase, id and dict"""
-        return "[{}] ({}) {}".format(
-                self.__class__.__name__, self.id, self.__dict__)
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Updates date"""
@@ -57,4 +56,4 @@ class BaseModel():
                 dict_cpy[key] = value
         dict_cpy["__class__"] = self.__class__.__name__
 
-        return (dict_cpy)
+        return dict_cpy
