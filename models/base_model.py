@@ -2,7 +2,6 @@
 """
 This modules contains the class BaseModel
 """
-
 from models import storage
 from uuid import uuid4
 from datetime import datetime
@@ -18,14 +17,13 @@ class BaseModel():
     """
 
     def __init__(self, *args, **kwargs):
-        """Initialize BaseModel"""
+        """Initializes a BaseModel"""
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     setattr(self, key, datetime.strptime(
                         value,
                         "%Y-%m-%dT%H:%M:%S.%f"))
-
                 elif key == "__class__":
                     continue
                 else:
@@ -41,19 +39,17 @@ class BaseModel():
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
-        """Updates date"""
+        """Updates the date"""
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """Returns object dictionary representation"""
+        """Returns the object dictionary representation"""
         dict_cpy = {}
-
         for key, value in self.__dict__.items():
             if key == "created_at" or key == "updated_at":
                 dict_cpy[key] = datetime.isoformat(value)
             else:
                 dict_cpy[key] = value
         dict_cpy["__class__"] = self.__class__.__name__
-
         return dict_cpy
