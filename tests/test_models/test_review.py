@@ -28,5 +28,6 @@ class Test_review(unittest.TestCase):
         self.assertEqual(type(test.text), str)
         self.assertEqual(len(test.text), 0)
 
+
 if __name__ == '__main__':
     unittest.main()
