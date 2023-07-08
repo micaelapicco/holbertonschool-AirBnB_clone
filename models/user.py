@@ -5,7 +5,9 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """Defines an User"""
+    """
+    Defines an User
+    """
 
     email = ""
     password = ""

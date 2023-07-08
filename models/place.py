@@ -7,7 +7,9 @@ from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Class Place"""
+    """
+    Defines a Place
+    """
     name = ""
     state_id = ""
     city_id = ""
