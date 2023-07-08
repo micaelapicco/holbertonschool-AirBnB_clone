@@ -2,9 +2,8 @@
 """
 Unittest for class BaseModel methods
 """
-
-from datetime import datetime
 import unittest
+from datetime import datetime
 from models.base_model import BaseModel
 
 
