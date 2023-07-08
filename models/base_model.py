@@ -38,7 +38,8 @@ class BaseModel():
 
     def __str__(self):
         """Prints clase, id and dict"""
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return "[{}] ({}) {}".format(
+                self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """Updates date"""
