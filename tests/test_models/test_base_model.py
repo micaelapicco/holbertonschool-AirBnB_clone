@@ -88,11 +88,13 @@ class Test_base_model(unittest.TestCase):
         test = BaseModel(
                 id="a random id",
                 created_at=str(at),
-                updated_at=str(at))
+                updated_at=str(at),
+                anAtrr="value")
 
         self.assertTrue(hasattr(test, "id"))
         self.assertTrue(hasattr(test, "created_at"))
         self.assertTrue(hasattr(test, "updated_at"))
+        self.assertFalse(hasattr(test, "anAttr"))
 
         self.assertEqual(test.id, "a random id")
         self.assertEqual(test.created_at.isoformat(), at)
