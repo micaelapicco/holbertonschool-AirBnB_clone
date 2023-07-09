@@ -36,7 +36,7 @@ class BaseModel():
 
     def __str__(self):
         """Prints clase, id and dict"""
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """Updates the date"""
@@ -45,11 +45,11 @@ class BaseModel():
 
     def to_dict(self):
         """Returns the object dictionary representation"""
-        dict_cpy = {}
+        dictionary = {}
         for key, value in self.__dict__.items():
             if key == "created_at" or key == "updated_at":
-                dict_cpy[key] = datetime.isoformat(value)
+                dictionary[key] = datetime.isoformat(value)
             else:
-                dict_cpy[key] = value
-        dict_cpy["__class__"] = self.__class__.__name__
-        return dict_cpy
+                dictionary[key] = value
+        dictionary["__class__"] = self.__class__.__name__
+        return dictionary
