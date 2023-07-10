@@ -13,6 +13,16 @@
   * Retrieve an object from a file...
   * Update attributes of an object.
   * Destroy an object.
+ 
+ ## Requirements
+- All the files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
+- `README.md` file must exist
+- All the files use the `pycodestyle (version 2.7.)` standard guidelines, including class and functions documentation
+- All tests are execute using the `unittest` module
+
+## Usage
+### Installation
+- `git clone https://github.com/micaelapicco/holbertonschool-AirBnB_clone` 
 
 ### Executing the Console:
 After cloning the repository, the file *console.py* have to have execution permission;
@@ -28,18 +38,23 @@ your_terminal@~$ echo "create City" | ./console.py
 your_terminal@~$
 ```
 
-### Testing:
-All unittests can be executed with:
-```
-python3 -m unittest discover tests
-```
-
-#### Supported Types of Object:
+### Supported Types of Object:
 - `BaseModel`:
 It is the base of all subclases, contains atributtes and methods that will be used by them; <br />
 `State`, `City`, `Amenity`, `Place`, `Review`.
 
-#### Supported Commands:
+## Supported Commands
+
+| Command  | Description                                                                                            |
+|----------|--------------------------------------------------------------------------------------------------------|
+| create   | Creates a new object of the allowed types (its type must be specified).                                |
+| show     | Shows the selected object, (type and id of it must be given).                                          |
+| all      | Shows all the existing objects of a class, (if not argument given will show all the existing objects). |
+| update   | Updates an object adding or updating the given attribute. (type, id, attribute, value required).       |
+| destroy  | Destroys (removes) an object, (type and id required).                                                  |
+| quit/EOF | Exits the program.                                                                                     |
+
+#### Usage Commands:
 * --> `create`: <br />
 Creates a new object of the allowed types (its type must be specified). <br />
 **Example:**
@@ -101,6 +116,11 @@ your_terminal@~$ ./console.py
 your_terminal@~$ ./console.py
 (hbnb) EOF
 your_terminal@~$
+```
+## Testing:
+All unittests can be executed with:
+```
+python3 -m unittest discover tests
 ```
 
 # Authors
