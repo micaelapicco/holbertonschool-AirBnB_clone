@@ -122,7 +122,8 @@ All unittests can be executed with:
 ```
 python3 -m unittest discover tests
 ```
-
+# Web static
+[Click here](https://micaelapicco.github.io/holbertonschool-AirBnB_clone/web_static/)
 # Authors
 -  [Emanel Trias](https://github.com/KrasniKot)
 -  [Micaela Picco](https://github.com/micaelapicco)
